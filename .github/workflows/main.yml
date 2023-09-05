@@ -1,0 +1,24 @@
+name: Verify the API against the pact 
+on:
+    workflow_dispatch:
+jobs:
+  publish-api:
+    runs-on: ubuntu-latest
+    container:
+      image: node:latest
+    env:
+      ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
+      ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+      ANYPOINT_ORG_ID: ${{ secrets.ANYPOINT_ORGID }}
+      ANYPOINT_HOST: ${{ secrets.ANYPOINT_HOST }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install api-catalog-cli
+        run: npm install -g api-catalog-cli@latest
+
+      - name: Publish API to Anypoint Exchange
+        run: |
+          api-catalog publish-asset --organization="$ANYPOINT_ORG_ID" --client_id="$ANYPOINT_CLIENT_ID" --client_secret="$ANYPOINT_CLIENT_SECRET" --host="$ANYPOINT_HOST"

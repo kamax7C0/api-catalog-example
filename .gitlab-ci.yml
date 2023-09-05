@@ -1,0 +1,19 @@
+default:
+  image: node:latest
+stages:
+  - publish api
+publish api:
+  stage: build
+  when: manual
+  only:
+    - main
+  before_script:
+    - npm install -g api-catalog-cli@latest
+  script:
+     # Publish API to Anypoint Exchange
+    - api-catalog publish-asset --organization="$ANYPOINT_ORG_ID" --client_id="$ANYPOINT_CLIENT_ID" --client_secret="$ANYPOINT_CLIENT_SECRET" --host="$ANYPOINT_HOST"
+  variables:
+    ANYPOINT_CLIENT_ID: $ANYPOINT_CLIENT_ID  # Assuming you've set up these variables in GitLab's CI/CD settings
+    ANYPOINT_CLIENT_SECRET: $ANYPOINT_CLIENT_SECRET
+    ANYPOINT_ORG_ID: $ANYPOINT_ORGID 
+    ANYPOINT_HOST: $ANYPOINT_HOST

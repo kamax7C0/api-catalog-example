@@ -1,0 +1,335 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Retail Stock Management API",
+    "version": "v2"
+  },
+  "externalDocs": {
+    "url": "http://",
+    "description": "This is the Retail Stock Management API. It allows you to manage stock items, get the stock for a specific item, update the stock for an item, search for items, and delete stock items.\n",
+    "x-amf-title": "Overview"
+  },
+  "x-amf-userDocumentation": [
+    {
+      "url": "http://",
+      "content": "This API uses HTTP Basic Authentication. Please ensure that your client includes a valid 'Authorization' header with each request.\n",
+      "title": "Security"
+    }
+  ],
+  "paths": {
+    "/items": {
+      "get": {
+        "description": "Get all stock items or search for stock items",
+        "parameters": [
+          {
+            "name": "query",
+            "description": "A search query to find stock items",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "description": "A search query to find stock items",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockSample"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://api.example.com/stock/v1"
+          }
+        ]
+      },
+      "post": {
+        "description": "Add a new stock item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://api.example.com/stock/v1"
+          }
+        ]
+      }
+    },
+    "/items/{itemId}": {
+      "get": {
+        "description": "Get the stock for a specific item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "description": "The ID of the stock item",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "description": "The ID of the stock item",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockItem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://api.example.com/stock/v1"
+          }
+        ]
+      },
+      "put": {
+        "description": "Update the stock for an item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "description": "The ID of the stock item",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "description": "The ID of the stock item",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StockItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "servers": [
+          {
+            "url": "http://api.example.com/stock/v1"
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a stock item",
+        "parameters": [
+          {
+            "name": "itemId",
+            "description": "The ID of the stock item",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "description": "The ID of the stock item",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the stock item"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://api.example.com/stock/v1"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StockSample": {
+        "example": [
+          {
+            "itemId": "12345",
+            "quantity": 20
+          },
+          {
+            "itemId": "67890",
+            "quantity": 15
+          }
+        ],
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "itemId",
+            "quantity"
+          ],
+          "properties": {
+            "itemId": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Error": {
+        "example": {
+          "code": "NOT_FOUND",
+          "message": "The requested item was not found."
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "StockItem": {
+        "example": {
+          "itemId": "12345",
+          "quantity": 20
+        },
+        "type": "object",
+        "required": [
+          "itemId",
+          "quantity"
+        ],
+        "properties": {
+          "itemId": {
+            "description": "The unique identifier for the stock item.",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "The current quantity of the stock item.",
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

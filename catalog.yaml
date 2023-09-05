@@ -1,0 +1,50 @@
+#%Catalog Descriptor 1.0
+contact:
+  name: 'Max Kogan'
+  email: 'maksim.kogan.work@obi.de'
+versionStrategyConditions:
+  patchIncrease:
+    branch:
+      - main
+projects:
+  - main: template-api-nestjs/openapi/swagger.json
+    assetId: template-api
+    version: 1.0.0
+    apiVersion: v1
+    tags:
+      - test
+    documentation: 
+      Home: shipping/docs/home.md
+      Welcome Page: shipping/docs/Welcome_Page.md
+      How to Consume: shipping/docs/How_to_Consume.md
+      Security: shipping/docs/Security.md
+      Environment and Testing: shipping/docs/Environment_and_Testing.md
+      Support: shipping/docs/Support.md 
+  - main: order-api-java/target/openapi/openapi.yaml
+    assetId: order-api
+    version: 1.0.0
+    apiVersion: v1
+    tags:
+      - test
+    documentation: 
+      Home: shipping/docs/home.md
+      Welcome Page: shipping/docs/Welcome_Page.md
+      How to Consume: shipping/docs/How_to_Consume.md
+      Security: shipping/docs/Security.md
+      Environment and Testing: shipping/docs/Environment_and_Testing.md
+      Support: shipping/docs/Support.md
+  - main: users-api-express-tsoa/build/openapi/swagger.json
+    assetId: users-api
+    version: 1.0.0
+    apiVersion: v1
+    tags:
+      - test
+    documentation: 
+      Home: shipping/docs/home.md
+      Welcome Page: shipping/docs/Welcome_Page.md
+      How to Consume: shipping/docs/How_to_Consume.md
+      Security: shipping/docs/Security.md
+      Environment and Testing: shipping/docs/Environment_and_Testing.md
+      Support: shipping/docs/Support.md     
+    
+    
