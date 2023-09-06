@@ -38,9 +38,7 @@ jobs:
     - name: Build NestJS project
       run: cd template-api-nestjs && npm run build
     - name: Start the application
-      run: cd template-api-nestjs && npm start
-    - name: Stop the application
-      run: cd template-api-nestjs && npm stop
+      run: cd template-api-nestjs && ./startup.ci.sh
       
 
   build-users-api-express-tsoa:
@@ -56,10 +54,6 @@ jobs:
       run: cd users-api-express-tsoa && npm install
     - name: Build Express project with TSOA
       run: cd users-api-express-tsoa && npm run build
-    - name: Run Express project with TSOA
-      run: cd users-api-express-tsoa && npm start
-    - name: Stop Express project with TSOA
-      run: cd users-api-express-tsoa && npm stop
 
   publish-api:
     needs: [build-order-api-java, build-template-api-nestjs, build-users-api-express-tsoa]
