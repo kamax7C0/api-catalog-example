@@ -17,3 +17,70 @@ publish api:
     ANYPOINT_CLIENT_SECRET: $ANYPOINT_CLIENT_SECRET
     ANYPOINT_ORG_ID: $ANYPOINT_ORGID 
     ANYPOINT_HOST: $ANYPOINT_HOST
+
+
+stages:
+  - build
+  - publish
+
+variables:
+  ANYPOINT_CLIENT_ID: $ANYPOINT_CLIENT_ID
+  ANYPOINT_CLIENT_SECRET: $ANYPOINT_CLIENT_SECRET
+  ANYPOINT_ORG_ID: $ANYPOINT_ORGID
+  ANYPOINT_HOST: $ANYPOINT_HOST
+
+.build_template: &build_definition
+  stage: build
+  image: ubuntu:latest
+  script:
+    - apt-get update && apt-get install -y git
+
+build-order-api-java:
+  <<: *build_definition
+  script:
+    - apt-get install -y maven
+    - mvn -f order-api-java/pom.xml clean verify
+  artifacts:
+    paths:
+      - order-api-java/target/openapi/openapi.yaml
+      - order-api-java/src/docs
+
+build-template-api-nestjs:
+  <<: *build_definition
+  image: node:16
+  services:
+    - postgres:latest
+  variables:
+    POSTGRES_USER: root
+    POSTGRES_PASSWORD: secret
+    POSTGRES_DB: api
+  script:
+    - cd template-api-nestjs && npm install
+    - npm run build
+    - ./startup.ci.sh
+  artifacts:
+    paths:
+      - template-api-nestjs/openapi/swagger.json
+      - template-api-nestjs/docs
+
+build-users-api-express-tsoa:
+  <<: *build_definition
+  image: node:16
+  script:
+    - cd users-api-express-tsoa && npm install
+    - npm run build
+  artifacts:
+    paths:
+      - users-api-express-tsoa/build/openapi/swagger.json
+      - users-api-express-tsoa/src/docs
+
+publish-api:
+  stage: publish
+  image: node:latest
+  dependencies:
+    - build-order-api-java
+    - build-template-api-nestjs
+    - build-users-api-express-tsoa
+  script:
+    - npm install -g api-catalog-cli@latest
+    - api-catalog publish-asset --organization="$ANYPOINT_ORG_ID" --client_id="$ANYPOINT_CLIENT_ID" --client_secret="$ANYPOINT_CLIENT_SECRET" --host="$ANYPOINT_HOST"
