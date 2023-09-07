@@ -40,7 +40,7 @@ jobs:
       with:
         name: stock-api-express-tsoa-artifacts
         path: |
-          retail-stock-management-api-tsoa/build/openapi/swagger.json
+          retail-stock-management-api-tsoa/build/openapi/swagger.yaml
           retail-stock-management-api-tsoa/src/docs
 
   publish-api:
