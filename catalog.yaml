@@ -16,9 +16,7 @@ projects:
     categories:
       API Type:
         - System API
-        - Experience API
       Organization:
-        - Finance
         - Billing
     documentation: 
       Welcome Page: order-api-java/src/docs/Welcome_Page.md
@@ -32,6 +30,11 @@ projects:
     apiVersion: v1
     tags:
       - test
+    categories:
+      API Type:
+        - Experience API
+      Organization:
+        - Finance
     documentation: 
       Welcome Page: retail-stock-management-api-tsoa/src/docs/Welcome_Page.md
       How to Consume: retail-stock-management-api-tsoa/src/docs/How_to_Consume.md
