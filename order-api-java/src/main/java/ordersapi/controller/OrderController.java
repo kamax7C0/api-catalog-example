@@ -27,7 +27,7 @@ public class OrderController {
     @Operation(description = "List all orders with pagination")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved list of orders"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     public ResponseEntity<Page<ProductOrder>> getAllOrders(@Parameter(description = "Pagination details", required = false) Pageable pageable) {
         return ResponseEntity.ok(orderService.getAllOrders(pageable));
@@ -36,9 +36,9 @@ public class OrderController {
     @GetMapping("/{id}")
     @Operation(description = "Get an order by ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved the order", useReturnTypeSchema = true),
-            @ApiResponse(responseCode = "404", description = "Order not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the order"),
+            @ApiResponse(responseCode = "404", description = "Order not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     public ResponseEntity<ProductOrder> getOrderById(@Parameter(description = "ID of the order to retrieve") @PathVariable Long id) {
         return orderService.getOrderById(id)
@@ -50,8 +50,8 @@ public class OrderController {
     @Operation(summary = "Create a new order")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully created the order"),
-            @ApiResponse(responseCode = "400", description = "Invalid input"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     public ResponseEntity<ProductOrder> createOrder(@Parameter(description = "Order details")
                                                     @RequestBody ProductOrder productOrder) {
@@ -62,8 +62,8 @@ public class OrderController {
     @Operation(summary = "Update an order by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully updated the order"),
-            @ApiResponse(responseCode = "404", description = "Order not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "404", description = "Order not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     public ResponseEntity<ProductOrder> updateOrder(@Parameter(description = "ID of the order to update") @PathVariable Long id, @Parameter(description = "Updated order details") @RequestBody ProductOrder productOrder) {
         ProductOrder updatedProductOrder = orderService.updateOrder(id, productOrder);
@@ -77,8 +77,8 @@ public class OrderController {
     @Operation(summary = "Delete an order by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Successfully deleted the order"),
-            @ApiResponse(responseCode = "404", description = "Order not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "404", description = "Order not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     public ResponseEntity<Void> deleteOrder(@Parameter(description = "ID of the order to delete") @PathVariable Long id) {
         orderService.deleteOrder(id);
