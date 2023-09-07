@@ -1,0 +1,37 @@
+{
+  "entryFile": "src/index.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/**/*Controller.ts"
+  ],
+  "spec": {
+    "name": "Retail Stock Management",
+    "description": "This API describes methods available in Retail Stock Management",
+    "termsOfService": "https://tos.example.com",
+    "contact": {
+      "name": "Max Kgn",
+      "email": "max.kgn@gmail.com"
+    },
+    "license": "take it or leave",
+    "basePath": "https://myapi.com/v1",
+    "outputDirectory": "build/openapi",
+    "specVersion": 3,
+    "version": "0.0.1",
+    "securityDefinitions": {
+      "client_id": {
+        "type": "apiKey",
+        "name": "client_id",
+        "in": "header"
+      },
+      "client_secret": {
+        "type": "apiKey",
+        "name": "client_secret",
+        "in": "header"
+      }
+    },
+    "yaml": true
+  },
+  "routes": {
+    "routesDir": "build"
+  }
+}

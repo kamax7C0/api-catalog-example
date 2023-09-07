@@ -22,46 +22,7 @@ jobs:
           order-api-java/target/openapi/openapi.json
           order-api-java/src/docs
 
-  build-template-api-nestjs:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        ports: 
-          - 5432:5432
-        env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: secret
-          POSTGRES_DB: api
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@main
-    - name: Use Node.js
-      uses: actions/setup-node@main
-      with:
-        node-version: '16'
-    - name: Install dependencies
-      run: cd template-api-nestjs && npm install
-    - name: Build NestJS project
-      run: cd template-api-nestjs && npm run build
-    - name: Start the application
-      run: cd template-api-nestjs && ./startup.ci.sh
-    - name: Upload artifacts
-      uses: actions/upload-artifact@main
-      with:
-        name: template-api-nestjs-artifacts
-        path: |
-          template-api-nestjs/openapi/swagger.json
-          template-api-nestjs/docs
-      
-
-  build-users-api-express-tsoa:
+  build-stock-api-tsoa:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -71,19 +32,19 @@ jobs:
       with:
         node-version: '16'
     - name: Install dependencies
-      run: cd users-api-express-tsoa && npm install
+      run: cd retail-stock-management-api-tsoa && npm install
     - name: Build Express project with TSOA
-      run: cd users-api-express-tsoa && npm run build
+      run: cd retail-stock-management-api-tsoa && npm run build
     - name: Upload artifacts
       uses: actions/upload-artifact@main
       with:
-        name: users-api-express-tsoa-artifacts
+        name: stock-api-express-tsoa-artifacts
         path: |
-          users-api-express-tsoa/build/openapi/swagger.json
-          users-api-express-tsoa/src/docs
+          retail-stock-management-api-tsoa/build/openapi/swagger.json
+          retail-stock-management-api-tsoa/src/docs
 
   publish-api:
-    needs: [build-order-api-java, build-template-api-nestjs, build-users-api-express-tsoa]
+    needs: [build-order-api-java, build-stock-api-tsoa]
     runs-on: ubuntu-latest
     container:
       image: node:latest
@@ -100,16 +61,11 @@ jobs:
       with:
         name: order-api-java-artifacts
         path: order-api-java
-    - name: Download template-api-nestjs artifacts
+    - name: Download stock-api-express-tsoa artifacts
       uses: actions/download-artifact@main
       with:
-        name: template-api-nestjs-artifacts
-        path: template-api-nestjs
-    - name: Download users-api-express-tsoa artifacts
-      uses: actions/download-artifact@main
-      with:
-        name: users-api-express-tsoa-artifacts
-        path: users-api-express-tsoa
+        name: stock-api-express-tsoa-artifacts
+        path: retail-stock-management-api-tsoa
     - name: Install api-catalog-cli
       run: npm install -g api-catalog-cli@latest
     - name: Publish API to Anypoint Exchange
