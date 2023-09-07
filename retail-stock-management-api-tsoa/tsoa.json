@@ -13,7 +13,7 @@
       "email": "max.kgn@gmail.com"
     },
     "license": "take it or leave",
-    "basePath": "https://myapi.com/v1",
+    "basePath": "api/v1",
     "outputDirectory": "build/openapi",
     "specVersion": 3,
     "version": "0.0.1",

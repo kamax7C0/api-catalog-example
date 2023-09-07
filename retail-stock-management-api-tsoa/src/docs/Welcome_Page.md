@@ -12,7 +12,7 @@ The Address Validation System API enables a user to do the following:
 
 The below diagram gives a small example of how Address Validation API can be used within the **Application Network**
 
-![ed30b1b7-af4f-4f0f-8492-203c7a07e71a-ADVSAPI.png](https://exchange2-file-upload-service-kprod.s3.us-east-1.amazonaws.com:443/ed30b1b7-af4f-4f0f-8492-203c7a07e71a-ADVSAPI.png)
+![Diagram](images/diagram.png)
 
 Kindly refer the ** API Summary ** section for further details on resources and their expected behavior.
 
