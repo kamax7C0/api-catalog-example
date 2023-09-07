@@ -20,7 +20,7 @@ projects:
       Security: order-api-java/src/docs/Security.md
       Environment and Testing: order-api-java/src/docs/Environment_and_Testing.md
       Support: order-api-java/src/docs/Support.md
-  - main: retail-stock-management-api-tsoa/build/openapi/swagger.json
+  - main: retail-stock-management-api-tsoa/build/openapi/swagger.yaml
     assetId: users-api
     version: 1.0.0
     apiVersion: v1
