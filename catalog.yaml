@@ -19,7 +19,7 @@ projects:
       Organization:
         - Billing
     documentation: 
-      Welcome Page: order-api-java/src/docs/Welcome_Page.md
+      Home: order-api-java/src/docs/home.md
       How to Consume: order-api-java/src/docs/How_to_Consume.md
       Security: order-api-java/src/docs/Security.md
       Environment and Testing: order-api-java/src/docs/Environment_and_Testing.md
@@ -36,7 +36,7 @@ projects:
       Organization:
         - Finance
     documentation: 
-      Welcome Page: retail-stock-management-api-tsoa/src/docs/Welcome_Page.md
+      Home: retail-stock-management-api-tsoa/src/docs/home.md
       How to Consume: retail-stock-management-api-tsoa/src/docs/How_to_Consume.md
       Security: retail-stock-management-api-tsoa/src/docs/Security.md
       Environment and Testing: retail-stock-management-api-tsoa/src/docs/Environment_and_Testing.md

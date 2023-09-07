@@ -1,83 +1,21 @@
-# Shipping API - UAPIM Demo
+# Welcome to the API Portal for Address Validation System API
 
-## Note: this is a fake documentation
+## Overview
 
-Show a single shipping order if current User has access permissions to it.
+The Address Validation System API enables a user to do the following:
 
-**URL** : `/api/shipping/:pk/`
+1. Verify and complete a given address
 
-**URL Parameters** : `pk=[integer]` where `pk` is the ID of the Ship on the
-server.
+2. Find zip code based on _Street_, _City_ and _State_
 
-**Method** : `GET`
+3. Find city and state based on _zip code_
 
-**Auth required** : YES
+The below diagram gives a small example of how Address Validation API can be used within the **Application Network**
 
-**Permissions required** :
+![Diagram](images/diagram.png)
 
-User is at least one of the following in relation to the Ship requested:
+Kindly refer the ** API Summary ** section for further details on resources and their expected behavior.
 
-* Owner `OO`
-* Admin `AA`
-* Viewer `VV`
+_This portal is built on the Anypoint Platform for API's, using the RAML version 1.0_
 
-**Data**: `{}`
-
-## Success Response
-
-**Condition** : If Pet exists and Authorized User has required permissions.
-
-**Code** : `200 OK`
-
-**Content example**
-
-```json
-{
-    "id": 345,
-    "name": "Super Pet",
-    "enterprise": false,
-    "url": "http://testserver/api/Pets/345/"
-}
-```
-
-## Error Responses
-
-**Condition** : If Pet does not exist with `id` of provided `pk` parameter.
-
-**Code** : `404 NOT FOUND`
-
-**Content** : `{}`
-
-### Or
-
-**Condition** : If Pet exists but Authorized User does not have required
-permissions.
-
-**Code** : `403 FORBIDDEN`
-
-**NOTEBOOKS**
-
-```notebook
-// Authenticate client
-API.authenticate(myclient);
-```
-
-```notebook 
-//fetch info
-fetch('https://anypoint.mulesoft.com/exchange/api/v1/health').then((res) => res.json())
-```
-
-**Content** :
-
-```json
-{"detail": "You do not have permission to perform this action."}
-```
-
-## Notes
-
-There are security issues:
-
-* This view allows existing users to test for existence of Pets that exist
-    but that they do not have access to.
-* Pet IDs are sequential so an authorized user can count all the Pets
-    on the system.
+_For more information about RAML, see _[_RAML_](http://raml.org/)_._
