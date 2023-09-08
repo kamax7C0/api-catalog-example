@@ -5,6 +5,7 @@
     "src/**/*Controller.ts"
   ],
   "spec": {
+    "outputDirectory": "build/openapi",
     "name": "Retail Stock Management",
     "description": "This API describes methods available in Retail Stock Management",
     "termsOfService": "https://tos.example.com",
@@ -14,7 +15,6 @@
     },
     "license": "take it or leave",
     "basePath": "api/v1",
-    "outputDirectory": "build/openapi",
     "specVersion": 3,
     "version": "0.0.1",
     "securityDefinitions": {

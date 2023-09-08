@@ -1,7 +1,6 @@
 package ordersapi.controller;
 
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import ordersapi.model.ProductOrder;
 import ordersapi.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
